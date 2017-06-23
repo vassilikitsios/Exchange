@@ -1,0 +1,26 @@
+#!/bin/bash
+#set -e
+
+#====================================================
+cat orders-01.txt | python Exchange.py > orders-01.output.txt
+diff orders-01.output.txt orders-01.correct_output.txt > orders-01.output_diff.txt
+if ((`cat orders-01.output_diff.txt | wc -l` == 0))
+then
+	echo 'passed first test'
+else
+	echo 'failed first test, differences are as follows:'
+	cat orders-01.output_diff.txt
+fi
+
+#====================================================
+cat orders-02.txt | python Exchange.py > orders-02.output.txt
+diff orders-02.output.txt orders-02.correct_output.txt > orders-02.output_diff.txt
+if ((`cat orders-02.output_diff.txt | wc -l` == 0))
+then
+	echo 'passed second test'
+else
+	echo 'failed second test, differences are as follows:'
+	cat orders-02.output_diff.txt
+fi
+
+#====================================================
